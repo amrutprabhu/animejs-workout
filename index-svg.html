@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+			.square{
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				y: 400px;
+
+				
+			}
+		</style>
+</head>
+<body>
+	<div id="box" class="square"></div>
+	<div id="box2" class="square"></div>
+	<svg id="demo-svg" width="1000" height="500">
+		<path stroke="red" fill="none" d="M 103 262 L 195 206 L 318 161 L 366 215 L 403 293 L 506 169 L 686 108 L 673 221 L 745 306 L 594 349 L 441 385 Z">
+	</svg>
+
+
+	<input id="bar" step=".0001" type="range" min="0" max="100" value="0">
+		
+	</input>
+	<input type="button" id="play" name="play" value="play"></input>
+	<input type="button" id="pause" name="play" value="pause"></input>
+	<svg id="demo-svg-2" width="1000" height="500">
+		<path stroke="black" fill="none" d="M 103 262 L 195 206 L 318 161 L 366 215 L 403 293 L 506 169 L 686 108 L 673 221 L 745 306 L 594 349 L 441 385 Z">
+	</svg>
+
+<script src="anime.min.js"></script>
+		<script >
+			// let path = anime.path('#demo-svg path')
+
+			// anime({
+			// 	targets:'#box',
+			// 	translateX: path('x'),
+			// 	translateY: path('y'),
+			// 	rotate: path('angle'),
+			// 	duration: 10000,
+			// 					easing : 'linear'
+
+
+			// })
+
+
+			var controlsProgressEl = document.querySelector('#bar');
+
+			var tl = anime.timeline({
+			  direction: 'alternate',
+			  loop: true,
+			  duration: 500,
+			  easing: 'easeInOutSine',
+			  update: function(anim) {
+			    controlsProgressEl.value = tl.progress;
+			  }
+			});
+
+			let path2 = anime.path('#demo-svg-2 path')
+			
+			tl
+			.add({
+					targets:'#box2',
+				translateX: path2('x'),
+				translateY: path2('y'),
+				rotate: path2('angle'),
+				duration: 10000,
+				easing : 'linear'
+			});
+
+
+			document.querySelector('#play').onclick = tl.play;
+			document.querySelector('#pause').onclick = tl.pause;
+			// document.querySelector('#restart').onclick = tl.restart;
+
+			controlsProgressEl.addEventListener('input', function() {
+			  tl.seek(tl.duration * (controlsProgressEl.value / 100));
+			});
+			// controlsProgressEl.addEventListener('change', function() {
+			//   tl.seek(tl.duration * (controlsProgressEl.value / 100));
+			// });
+
+		</script>
+</body>
+</html>

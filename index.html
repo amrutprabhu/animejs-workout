@@ -1,0 +1,67 @@
+<html>
+	<head>
+
+
+		<style type="text/css">
+			.square{
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				y: 400px;
+
+				
+			}
+		</style>
+	</head>
+
+<body>
+	<div>
+		
+		<div id="sq1" class="square"></div>
+		<div id="sq2" class="square"></div>
+		<input type="text" id="text1" name=""/>
+	</div>
+<script src="anime.min.js"></script>
+		<script >
+		anime({
+			targets: '#sq1',
+			borderRadius: ['0%', '50%'],
+			duration: 5000,
+			keyframes :[
+			{ translateX: 250},
+			{ translateX: 350,translateY: 350}
+			],
+			easing: 'easeOutElastic(1, .8)'
+
+
+		});	
+
+		var objPropLogEl = document.querySelector('#sq2');
+		var logEl = document.querySelector('#sq2');
+
+		var battery = {
+		  y: '100',
+		  
+		}
+
+		anime({
+		  targets: '#text1',
+		  duration: 10000,
+		  value: [1,100],
+		  round: 1,
+		  easing: 'linear'
+		});
+
+
+		anime({
+		  targets: '#sq2',
+		  translateX: path('x'),
+		  translateY: path('y'),
+		  rotate: path('angle'),
+		  easing: 'linear',
+		  duration: 2000,
+		  loop: true
+		});
+		</script>	
+</body>
+</html>
